@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Task Duration Testing</title>
+</head>
+<body>
+<script>
+
+let targetElement = document.body;
+let numElementsToInsert = 2000;
+while (numElementsToInsert-- > 0) {
+  const div = document.createElement('div');
+  targetElement.appendChild(div);
+  targetElement = div;
+}
+
+(function raf() {
+  window.requestAnimationFrame(raf);
+
+  const end = performance.now() + 49;
+  while (performance.now() < end);
+
+  targetElement.style.width = (Math.random() * 100) + "px";
+  targetElement.style.height = "100px";
+  targetElement.style.backgroundColor = "red";
+  console.log("raf");
+})()
+</script>
+</body>
+</html>
